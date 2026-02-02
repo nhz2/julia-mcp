@@ -23,25 +23,19 @@ class JuliaSession:
         sentinel: str,
         *,
         is_temp: bool = False,
-        is_test: bool = False,
     ):
         self.env_dir = env_dir
         self.sentinel = sentinel
         self.is_temp = is_temp
-        self.is_test = is_test
         self.process: asyncio.subprocess.Process | None = None
         self.lock = asyncio.Lock()
 
     @property
     def project_path(self) -> str:
-        if self.is_test:
-            return str(Path(self.env_dir).parent)
         return self.env_dir
 
     @property
     def init_code(self) -> str | None:
-        if self.is_test:
-            return "using TestEnv; TestEnv.activate()"
         return None
 
     async def start(self) -> None:
@@ -183,14 +177,12 @@ class SessionManager:
             is_temp = env_path is None
             if is_temp:
                 env_dir = tempfile.mkdtemp(prefix="julia-mcp-")
-                is_test = False
             else:
                 resolved = Path(env_path).resolve()
                 env_dir = str(resolved)
-                is_test = resolved.name == "test"
 
             session = JuliaSession(
-                env_dir, sentinel, is_temp=is_temp, is_test=is_test,
+                env_dir, sentinel, is_temp=is_temp,
             )
             await session.start()
             self._sessions[key] = session

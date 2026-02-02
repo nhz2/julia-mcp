@@ -251,9 +251,9 @@ class TestSessionManager:
         os.makedirs(test_dir)
         try:
             session = await manager.get_or_create(test_dir)
-            # project_path should be the parent, not the test dir
-            assert session.project_path == tmpdir
-            assert session.init_code == "using TestEnv; TestEnv.activate()"
+            # project_path should be the test dir, not the parent
+            assert session.project_path == test_dir
+            assert session.init_code is None
         finally:
             await manager.shutdown()
             shutil.rmtree(tmpdir)

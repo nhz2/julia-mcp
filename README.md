@@ -19,7 +19,6 @@ MCP server that gives AI assistants access to efficient Julia code execution. Av
 - Julia – any version, `julia` binary must be in `PATH`
   - Recommended packages – used automatically if available in the global environment:
   - [Revise.jl](https://github.com/timholy/Revise.jl) - to pick code changes up without restarting
-  - [TestEnv.jl](https://github.com/JuliaTesting/TestEnv.jl) — to properly activate test environment when `env_path` points to `/test/`
 
 The server itself is written in Python since the Python MCP protocol implementation is very mature.
 
@@ -85,7 +84,6 @@ Add to `.vscode/settings.json`:
 ## Details
 
 - Each unique `env_path` gets its own isolated Julia session. Omitting `env_path` uses a temporary session that is cleaned up on MCP shutdown.
-- If `env_path` ends in `/test/`, the parent directory is used as the project and `TestEnv` is activated automatically. For this to work, `TestEnv` must be installed in the base environment.
 - Julia is launched with `--threads=auto` and `--startup-file=no`.
 
 
