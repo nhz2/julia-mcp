@@ -1,4 +1,8 @@
-# julia-mcp
+# Fork of julia-mcp
+
+My fork of https://github.com/aplavin/julia-mcp.git
+
+Modifications are removing TestEnv support, and removing "--startup-file=no", and "--threads=auto" when starting up julia.
 
 MCP server that gives AI assistants access to efficient Julia code execution. Avoids Julia's startup and compilation costs by keeping sessions alive across calls, and persists state (variables, functions, loaded packages) between them — so each iteration is fast.
 
@@ -29,7 +33,7 @@ First, clone the repository:
 
 ```bash
 cd /any_directory
-git clone https://github.com/aplavin/julia-mcp.git
+git clone https://github.com/nhz2/julia-mcp.git
 ```
 Then register the server with your client of choice (see below).
 

@@ -48,8 +48,6 @@ class JuliaSession:
         cmd = [
             julia,
             "-i",
-            "--startup-file=no",
-            "--threads=auto",
             f"--project={self.project_path}",
         ]
 
