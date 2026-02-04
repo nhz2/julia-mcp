@@ -2,7 +2,9 @@
 
 My fork of https://github.com/aplavin/julia-mcp.git
 
-Modifications are removing TestEnv support, and removing "--startup-file=no", and "--threads=auto" when starting up julia.
+Modifications are launching the Julia repl in a linux terminal with tmux.
+
+These modifications are vibe coded and not tested, so use at your own risk.
 
 MCP server that gives AI assistants access to efficient Julia code execution. Avoids Julia's startup and compilation costs by keeping sessions alive across calls, and persists state (variables, functions, loaded packages) between them — so each iteration is fast.
 
